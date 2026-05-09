@@ -1,47 +1,49 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-	name: devops-platform
-	labels:
-		app: devops-platform
+ name: devops-platform
+ labels:
+  app: devops-platform
+  
 spec:
-	replicas: 2
-	selector:
-		matchLabels:
-			app: devops-platform
-	template:
-		metadata:
-			labels:
-				app: devops-platform
-		spec:
-			securityContext:
-				runAsNonRoot: true
-				runAsUser: 1000
-			containers:
-				- name: devops-platform
-				image: devops-platform:1.0.0
-				imagePullPolicy: Never
-				ports:
-					- containerPort: 5000
-				resources:
-					requests:
-						memory: "64Mi"
-						cpu: "100m"
-					limits:
-						memory: "128Mi"
-						cpu: "200m"
-					livenessProbe:
-						httpGet:
-							path: /health
-							port: 5000
-						initialDelaySeconds: 10
-						periodSeconds: 15
-					readinessProbe:
-						httpGet:
-							path: /health
-							port: 5000
-						initialDelaytSeconds: 5
-						periodSeconds: 10
-					env:
-						- name: APP_ENV
-						value: "production"
+ replicas: 2
+ 
+ selector:
+   matchLabels:
+    app: devops-platform
+ template:
+  metadata:
+   labels:
+    app: devops-platform
+  spec:
+   securityContext:
+    runAsNonRoot: true
+    runAsUser: 1000
+   containers:
+    - name: devops-platform
+      image: devops-platform:1.0.0
+      imagePullPolicy: Never
+      ports:
+       - containerPort: 5000
+      resources:
+       requests:
+        memory: "64Mi"
+	cpu: "100m"
+       limits:
+	memory: "128Mi"
+	cpu: "200m"
+       livenessProbe:
+	httpGet:
+	 path: /health
+	 port: 5000
+	initialDelaySeconds: 10
+	periodSeconds: 15
+       readinessProbe:
+        httpGet:
+	 path: /health
+	 port: 5000
+	initialDelaySeconds: 5
+	periodSeconds: 10
+       env:
+	- name: APP_ENV
+	  value: "production"
