@@ -26,7 +26,7 @@ Vagrant.configure("2") do |config|
   			mkdir -p /home/vagrant/.kube
   			cp /etc/rancher/k3s/k3s.yaml /home/vagrant/.kube/config
   			chown vagrant:vagrant /home/vagrant/.kube/config
-  			chmod 600 /home/vagrant/,kube/config
+  			chmod 600 /home/vagrant/.kube/config
   			echo 'export KUBECONFIG=/home/vagrant/.kube/config' >> /home/vagrant/.bashrc
   			echo "k3s setup complete"
   		else
@@ -34,7 +34,7 @@ Vagrant.configure("2") do |config|
   			sleep 30
   			cp /etc/rancher/k3s/k3s.yaml /home/vagrant/.kube/config
 			chown vagrant:vagrant /home/vagrant/.kube/config
-  			chmod 600 /home/vagrant/,kube/config
+  			chmod 600 /home/vagrant/.kube/config
   		fi
   
   		echo "Provisioning complete"
