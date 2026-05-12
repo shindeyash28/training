@@ -1,4 +1,3 @@
-cat > ~/devsecops-hackathon/Vagrantfile << 'EOF'
 Vagrant.configure("2") do |config|
 
   config.vm.box = "bento/ubuntu-22.04"
