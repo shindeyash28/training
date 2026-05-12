@@ -12,6 +12,8 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provision "shell", inline: <<-SHELL
+  timedatectl set-ntp true
+  sleep 10
   apt-get update -y
 
   apt-get install -y \
